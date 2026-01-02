@@ -1,0 +1,52 @@
+//BRUTE FORCE//
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();//size of Array
+		int majority=(int)n/2; //no.of times repeated Element
+		int[] arr=new int[n];
+		for(int i=0;i<n;i++){
+		    arr[i]=sc.nextInt();
+		}
+		HashMap<Integer,Integer> hm=new HashMap<>();
+		for(int i:arr){
+		    hm.put(i,hm.getOrDefault(i,0)+1);
+		}
+		for(int i:hm.keySet()){
+		    if(hm.get(i)>majority){
+		        System.out.println(i);
+		        return;
+		    }
+		}
+		System.out.println(-1);
+	}
+}
+
+//BETTER
+
+public class Main {
+    public int majorityElement(int[] nums) {
+          int n = nums.length;
+        int cnt = 0; 
+        int el = 0;
+        for (int i = 0; i < n; i++) {
+            if (cnt == 0) {
+                cnt = 1;
+                el = nums[i];
+            } else if (el == nums[i]) cnt++;
+            else cnt--;
+        }
+
+       
+        int cnt1 = 0;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == el) cnt1++;
+        }
+
+        if (cnt1 > (n / 2)) return el;
+        return -1;
+    }
+
+    }
